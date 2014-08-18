@@ -48,10 +48,10 @@ Alice - I love the weather today (5 minutes ago)
 
  - Application must use the console for input and output
  - Users submit commands to the application. There are four commands. “posting”, “reading”, etc. are not part of the commands; commands always start with the user’s name.
- - posting: <user name> -> <message>
- - reading: <user name>
- - following: <user name> follows <another user>
- - wall: <user name> wall
+ - posting: `<user name> -> <message>`
+ - reading: `<user name>`
+ - following: `<user name> follows <another user>`
+ - wall: `<user name> wall`
  - Don't worry about handling any exceptions or invalid commands. Assume that the user will always type the correct commands. Just focus on the sunny day scenarios.
  - Don’t bother making it work over a network or across processes. It can all be done in memory, assuming that users will all use the same terminal.
  - Non-existing users should be created as they post their first message. Application should not start with a pre-defined list of users.
