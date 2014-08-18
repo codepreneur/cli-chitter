@@ -25,5 +25,9 @@ class Chitter
 		@data[user][:posts][Time.now] = message
 	end
 
+	def read(user)
+		@data[user][:posts].each {|time,post| @writer.call post.join(' ') + time_difference(time)}
+	end
+
 
 end

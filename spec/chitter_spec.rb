@@ -31,5 +31,16 @@ describe Chitter do
   end
 
 
+  context "reading" do
+
+  	it "can read" do
+  		@chitter.post("Vaidas", %w{Testing Things})
+  		expect(@writer).to receive(:call).with("Testing Things (0 second(s) ago)")
+  		@chitter.read("Vaidas")
+  	end
+
+  end
+
+
 
 end
