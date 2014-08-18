@@ -19,4 +19,11 @@ class Chitter
 		return ' (' + (diff).round.to_s + ' second(s) ago)'
 	end
 
+
+	def post(user, message)
+		@data[user] = {follows: [], posts: {},} unless @data.include? user
+		@data[user][:posts][Time.now] = message
+	end
+
+
 end

@@ -20,6 +20,16 @@ describe Chitter do
   	end
   end
 
-  
+
+  context "posting" do
+
+  	it "can post" do
+  		@chitter.post("Vaidas", %w{Testing Things})
+  		expect(@chitter.data["Vaidas"][:posts].values.flatten).to eq ["Testing", "Things"]
+  	end
+
+  end
+
+
 
 end
