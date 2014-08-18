@@ -54,5 +54,15 @@ describe Chitter do
   end
 
 
+  context "wall" do
+  	it "displays posts chronologically (most recent first)" do
+  		@chitter.post("Vaidas", %w{Testing Things})
+	  	expect(@writer).to receive(:call).with("Vaidas - Testing Things (0 second(s) ago)")
+	  	@chitter.wall("Vaidas")
+	  	# A bit of race condition here
+  	end
+  end 
+
+
 
 end

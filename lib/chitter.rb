@@ -35,4 +35,11 @@ class Chitter
 	end
 
 
+	def wall(user)
+		posters = (@data[user][:follows] + [user])
+		sorted = posters.map{|poster| @data[poster][:posts].map{|time,post| poster + " - " + post.join(' ') + " " + time.to_s }}.flatten.sort_by!{|post| post.split[-3..-1].join(' ') }.reverse
+		sorted.each{|post| @writer.call post.split[0..-4].join(' ') + time_difference( Time.parse(post.split[-3..-1].join(' ')) )}
+	end
+
+
 end
