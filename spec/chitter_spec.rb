@@ -63,6 +63,43 @@ describe Chitter do
   	end
   end 
 
+  
+
+  context "user interface" do
+  	
+  	it "posting: <user name> -> <message>" do
+  		allow(@reader).to receive(:call).and_return('Vaidas -> Testing Things')
+  		expect(@chitter).to receive(:post).with("Vaidas", ["Testing", "Things"])
+  		@chitter.parse_input
+
+  	end
+
+  	it "reading: <user name>" do
+  		allow(@reader).to receive(:call).and_return('Vaidas')
+  		expect(@chitter).to receive(:read).with("Vaidas")
+  		@chitter.parse_input
+  	end
+
+  	it "following: <user name> follows <another user>" do
+  		allow(@reader).to receive(:call).and_return('Vaidas follows Gabriel')
+  		expect(@chitter).to receive(:follow).with("Vaidas", "Gabriel")
+  		@chitter.parse_input
+  	end
+
+  	it "wall: <user name> wall" do
+  		allow(@reader).to receive(:call).and_return('Vaidas wall')
+  		expect(@chitter).to receive(:wall).with("Vaidas")
+  		@chitter.parse_input
+  	end
+
+  	it "Type 'exit' to exit" do
+  		allow(@reader).to receive(:call).and_return('exit')
+  		expect{@chitter.parse_input}.to raise_error SystemExit
+  	end
+
+
+  end
+
 
 
 end

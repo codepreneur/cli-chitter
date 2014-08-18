@@ -42,4 +42,51 @@ class Chitter
 	end
 
 
+	def instructions
+		menu  = "Welcome to Chitter!\n"
+		menu += "console-based social networking application\n"
+		menu += "posting: <user name> -> <message>\n"
+		menu += "reading: <user name>\n"
+		menu += "following: <user name> follows <another user>\n"
+		menu += "wall: <user name> wall\n"
+		menu += "Type 'exit' to exit\n"
+	end
+
+
+	def parse_input
+		input = @reader.call.chomp.split
+		
+		if input.length == 1 && input[0] != 'exit'
+			read(input[0])
+		elsif input.include? '->' 
+			post(input[0],input[2..-1])
+		elsif input.include? 'follows' 
+			follow(input[0],input[2])
+		elsif input.include? 'wall'
+			wall(input[0])
+		elsif input[0] == 'exit'
+			exit
+		else
+			@writer.call "Sorry unrecognised command"
+		end
+			
+	end
+
+
+	def control_flow
+		@writer.call ""
+		@writer.call instructions
+		while not @exit == true
+			print "> "
+			parse_input
+		end
+	end
+
+
+
+	if __FILE__ == $0
+		Chitter.new(method(:puts), method(:gets)).control_flow
+	end
+
+
 end
