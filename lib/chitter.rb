@@ -30,4 +30,9 @@ class Chitter
 	end
 
 
+	def follow(user, somebody)
+		@data[user][:follows].push(somebody) unless @data[user][:follows].include? somebody
+	end
+
+
 end

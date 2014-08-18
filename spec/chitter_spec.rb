@@ -42,5 +42,17 @@ describe Chitter do
   end
 
 
+  context "following" do
+
+  	it "can follow" do
+	  	@chitter.post("Vaidas", %w{Testing Things})
+	  	@chitter.post("Gabriel", %w{Helping Things})
+	  	@chitter.follow("Vaidas","Gabriel")
+	  	expect(@chitter.data["Vaidas"][:follows]).to eq ["Gabriel"]
+	  end
+
+  end
+
+
 
 end
